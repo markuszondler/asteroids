@@ -1,6 +1,7 @@
 import pygame
 
 from constants import SCREEN_HEIGHT, SCREEN_WIDTH
+from player import Player
 
 
 def main():
@@ -13,6 +14,7 @@ def main():
     clock = pygame.time.Clock()
     dt = 0  # delta time in seconds
     running = True
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
     while running:
         # poll for events
@@ -22,6 +24,7 @@ def main():
 
         # create screen
         screen.fill("black")
+        player.draw(screen)
 
         # render game
 
