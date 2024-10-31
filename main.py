@@ -14,6 +14,11 @@ def main():
     clock = pygame.time.Clock()
     dt = 0  # delta time in seconds
     running = True
+
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
+    Player.containers = (updatable, drawable)
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
     while running:
@@ -21,13 +26,16 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-        player.update(dt)
+
+        for item in updatable:
+            item.update(dt)
 
         # create screen
         screen.fill("black")
-        player.draw(screen)
 
         # render game
+        for item in drawable:
+            item.draw(screen)
 
         # flip the display to put created scene on screen
         pygame.display.flip()
